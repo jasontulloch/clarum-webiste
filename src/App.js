@@ -1,24 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+// Screens
+import screens from './navigation/screens';
+// State Management
+import { useAtomValue } from 'jotai';
+import { authenticationGroupAtom } from './jotai/authentication';
+// External Libraries
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 function App() {
+  const authenticationGroup = useAtomValue(authenticationGroupAtom)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+        <Router>
+          {authenticationGroup === 'Institutional Investor' ? (
+              <Routes>
+                {screens?.institutionInvestorScreens?.map((screen) => {
+                  return (
+                    <Route path={screen.path} element={screen.component} />
+                  )
+                })}
+              </Routes>
+          ) : (null)}
+        </Router>
   );
 }
 
