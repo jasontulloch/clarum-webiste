@@ -1,0 +1,21 @@
+/* Layout Container */
+.layout-container {
+    display: flex;
+    min-height: 100vh; /* Ensure it takes full viewport height */
+  }
+  
+  /* Sidebar */
+  .sidebar {
+    width: 18rem; /* Width of the sidebar */
+    background-color: #333; /* Example color */
+    height: 100vh; /* Full height */
+    position: fixed; /* Fixes the sidebar on the left */
+  }
+  
+  /* Content */
+  .content {
+    margin-left: 18rem; /* Space for the sidebar */
+    flex: 1; /* Takes up the remaining space */
+    padding: 1rem; /* Add padding if needed */
+  }
+  
