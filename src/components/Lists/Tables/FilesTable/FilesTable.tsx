@@ -151,38 +151,25 @@ const FilesTable: React.FC<FilesTableProps> = ({ files, setFiles, breadcrumbs, s
   const handleDeleteFile = (fileToDelete: DataroomDocumentProps) => {
     const deleteFileFromDocuments = (docs: DataroomDocumentProps[], targetId: number): DataroomDocumentProps[] => {
       return docs.reduce((acc, doc) => {
-        // If the document matches the target ID, we skip adding it
         if (doc.id === targetId) {
-          return acc; // Skip this document by not adding it to the accumulator
+          return acc;
+        } else if (doc.contents) {
+          return [...acc, { ...doc, contents: deleteFileFromDocuments(doc.contents, targetId) }];
         }
-        
-        // If the document has contents, recursively check and update its contents
-        if (doc.contents) {
-          const updatedContents = deleteFileFromDocuments(doc.contents, targetId);
-  
-          // Add the document back with updated contents (even if empty)
-          return [...acc, { ...doc, contents: updatedContents }];
-        }
-  
-        // Add the document if it doesn't have contents or doesn't match the target ID
         return [...acc, doc];
       }, [] as DataroomDocumentProps[]);
     };
   
-    // Update files by deleting the target file
     setFiles((prevDocs: DataroomDocumentProps[]) => deleteFileFromDocuments(prevDocs, fileToDelete.id));
-  
-    // Update the selected files, removing the deleted file from the list
     setSelectedFiles(prevFiles => 
       prevFiles.filter(file => file.id !== fileToDelete.id)
     );
-  
-    // Display notification about successful deletion
-    setIsShowNotification(true);
-    setNotificationHeader(`${fileToDelete.label} ${fileToDelete.type.toLowerCase()} successfully deleted!`);
-    setNotificationDescription(`Files will be permanently deleted after 30 days...`);
-   
-  }
+
+    setIsShowNotification(true)
+    setNotificationHeader(`${fileToDelete.label} ${fileToDelete.type.toLowerCase()} successfully deleted!`)
+    setNotificationDescription(`Files will be permanently deleted after 30 days...`)
+    setFileToDelete(null)
+  };
 
   return (
       <div className="w-full mt-8">

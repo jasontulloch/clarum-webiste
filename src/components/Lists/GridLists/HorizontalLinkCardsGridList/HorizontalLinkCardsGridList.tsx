@@ -17,7 +17,7 @@ interface HorizontalLinkCardsGridListProps {
   
 const HorizontalLinkCardsGridList = ({ list, onClick }: HorizontalLinkCardsGridListProps) => {
     return (
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+      <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
         {list.map((item) => (
           <div
             key={item.id}
@@ -25,7 +25,7 @@ const HorizontalLinkCardsGridList = ({ list, onClick }: HorizontalLinkCardsGridL
               item.isActive
               ? "border-gray-400"
               : "border-gray-300",
-              "relative flex items-center space-x-3 rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:border-gray-400"
+              "relative flex items-center space-x-3 rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:border-gray-400 cursor-pointer"
           )}
           >
             <div className="flex-shrink-0">

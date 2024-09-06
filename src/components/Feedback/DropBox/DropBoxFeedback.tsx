@@ -1,10 +1,22 @@
-import { PlusIcon } from '@heroicons/react/20/solid'
+import React from 'react';
+import styles from '@/components/Feedback/DropBox/DropBoxFeedback.module.css';
+// Tailwind
+import { PlusIcon } from '@heroicons/react/20/solid';
+
+// interface DropBoxFeedbackProps {
+//     header: string,
+//     description: string,
+//     button: {
+//         label: string,
+//         onClick: () => void
+//     }
+// }
 
 const DropBoxFeedback = ({ }) => {
     return (
         <button
             type="button"
-            className="text-center relative block w-full rounded-lg border-2 border-dashed border-gray-300 p-3 text-center hover:border-gray-400 h-full "
+            className="text-center relative block w-full rounded-lg border-2 border-dashed border-gray-300 p-3 text-center hover:border-gray-400 h-full"
         >
             <svg
                 fill="none"

@@ -13,25 +13,25 @@ export const reportDocumentAtom = atom<ReportDocumentProps>({
 export const reportDocumentsAtom = atom<ReportDocumentProps[]>([
     { 
         id: 1,
-        label: 'financial-due-diligence-qestions-amber-ai.doc',
+        label: 'financial-due-diligence-qestions-clarum-ai.doc',
         type: 'File',
         lastModified: new Date(),
     },
     { 
         id: 2,
-        label: 'tax-due-diligence-qestions-amber-ai.doc',
+        label: 'tax-due-diligence-qestions-clarum-ai.doc',
         type: 'File',
         lastModified: new Date(),
     },
     { 
         id: 3,
-        label: 'financial-due-diligence-model-amber-ai.xlm',
+        label: 'financial-due-diligence-model-clarum-ai.xlm',
         type: 'File',
         lastModified: new Date(),
     },
     { 
         id: 4,
-        label: 'financial-due-diligence-report-amber-ai.pdf',
+        label: 'financial-due-diligence-report-clarum-ai.pdf',
         type: 'File',
         lastModified: new Date(),
     }

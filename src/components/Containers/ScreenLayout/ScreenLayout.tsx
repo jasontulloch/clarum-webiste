@@ -11,7 +11,6 @@ const ScreenLayout: React.FC<React.PropsWithChildren<{}>> = ({ children }) => {
         {children}
       </div>
       <div className={styles.footerSpacer} />
-      {/* <Footer /> */}
     </div>
   );
 };

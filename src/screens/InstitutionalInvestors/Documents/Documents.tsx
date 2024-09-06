@@ -16,10 +16,10 @@ const InstitutionalInvestorsDataScreen = () => {
     return (
         <ScreenLayout>
             <div className="flex flex-col lg:flex-row lg:flex-column lg:space-x-4">
-                <div className="w-full min-w:w-1/2 xl:w-1/2 mt-6">
+                <div className="w-full min-w:w-1/2 xl:w-1/2">
                     <DropBoxFeedback />
                 </div>
-                <div className="w-full min-w:w-1/2 xl:w-1/2 mt-6">
+                <div className="w-full min-w:w-1/2 xl:w-1/2">
                     <FullWidthWithIndicatorsTable />
                 </div>
             </div>

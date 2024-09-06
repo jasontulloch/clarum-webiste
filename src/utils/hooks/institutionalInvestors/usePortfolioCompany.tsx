@@ -1,12 +1,17 @@
+import { PortfolioCompanyProps } from '@/types/institutionalInvestors/portfolioCompany';
+// State Management
 import { useAtom } from 'jotai';
 import { portfolioCompanyAtom } from '@/jotai/institutionalInvestors/portfolioCompanies';
-import { PortfolioCompanyProps } from '@/types/institutionalInvestors/portfolioCompany';
+import useRedirect from '../navigation/useRedirect';
 
 const usePortfolioCompany = () => {
+  const handleRedirect = useRedirect()
+
   const [portfolioCompany, setPortfolioCompany] = useAtom(portfolioCompanyAtom);
 
   const handleChangePortfolioCompany = (company: PortfolioCompanyProps | null) => {
     if (company?.id) {
+      handleRedirect('/documents')
       setPortfolioCompany(company);
     } else {
       setPortfolioCompany({

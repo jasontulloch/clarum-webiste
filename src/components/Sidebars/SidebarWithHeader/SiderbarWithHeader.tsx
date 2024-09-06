@@ -4,11 +4,11 @@ import { useState } from 'react'
 import clarumLogo from '@/assets/images/brand/clarum-logo.png';
 // Hooks
 import usePortfolioCompany from '@/utils/hooks/institutionalInvestors/usePortfolioCompany';
-import useRedirect from '@/utils/hooks/navigation/useNavigation';
+import useRedirect from '@/utils/hooks/navigation/useRedirect';
 // Tailwind
-import { Dialog, DialogBackdrop, DialogPanel, Menu, MenuButton, MenuItem, MenuItems, TransitionChild } from '@headlessui/react'
+import { Dialog, DialogBackdrop, DialogPanel, TransitionChild } from '@headlessui/react'
 import { Bars3Icon, BellIcon, Cog6ToothIcon, XMarkIcon } from '@heroicons/react/24/outline'
-import { ChevronDownIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
+import { BellIcon as BellIconSolid } from '@heroicons/react/24/solid';
 import { useLocation } from 'react-router-dom';
 import { useAtom, useAtomValue } from 'jotai';
 import screens from '@/navigation/screens';
@@ -29,6 +29,11 @@ const SidebarWithHeader = () => {
   // Global State
   const user = useAtomValue(userAtom)
   const [portfolioCompanies, setPortfolioCompanies] = useAtom(portfolioCompaniesAtom)
+
+  const onClickRedirectHome = () => {
+    handleChangePortfolioCompany(null)
+    handleRedirect('/dashboard')
+  }
 
   return (
     <>
@@ -56,12 +61,17 @@ const SidebarWithHeader = () => {
               <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-6 pb-4 ring-1 ring-white/10">
               <div className="flex h-16 items-center space-x-4">
                 <img
-                  onClick={() => handleChangePortfolioCompany(null)}
+                  onClick={onClickRedirectHome}
                   alt="Clarum logo"
                   src={clarumLogo}
-                  className="h-8 w-auto"
+                  className="h-8 w-auto cursor-pointer"
                 />
-                <span className="text-lg font-bold text-white">Clarum</span>
+                <span 
+                  onClick={onClickRedirectHome}
+                  className="text-lg font-bold text-white cursor-pointer"
+                >
+                  Clarum
+                </span>
               </div>
                 <nav className="flex flex-1 flex-col">
                   <ul role="list" className="flex flex-1 flex-col gap-y-7">
@@ -134,19 +144,24 @@ const SidebarWithHeader = () => {
           <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-6 pb-4">
           <div className="flex h-16 items-center space-x-4">
             <img
-              onClick={() => handleChangePortfolioCompany(null)}
+              onClick={onClickRedirectHome}
               alt="Clarum logo"
               src={clarumLogo}
-              className="h-8 w-auto"
+              className="h-8 w-auto cursor-pointer"
             />
-            <span className="text-lg font-bold text-white">Clarum</span>
+            <span 
+              className="text-lg font-bold text-white cursor-pointer"
+              onClick={onClickRedirectHome}
+            >
+              Clarum
+            </span>
           </div>
             <nav className="flex flex-1 flex-col">
               <ul role="list" className="flex flex-1 flex-col gap-y-7">
                 <li>
                   <ul role="list" className="-mx-2 space-y-1">
                     {screens?.institutionInvestorScreens?.map((item) => {
-                        if (item.position === 'sideappbar' && (['Dashboard', 'Portfolio'].includes(item.name) || portfolioCompany.id !== 0)) {
+                        if (item.position === 'sideappbar' && ((['Dashboard', 'Portfolio'].includes(item.name) && portfolioCompany.id === 0) || (!['Dashboard', 'Portfolio'].includes(item.name) && portfolioCompany.id !== 0))) {
                             return (
                                 <li key={item.path}>
                                     <a
@@ -168,7 +183,7 @@ const SidebarWithHeader = () => {
                   </ul>
                 </li>
                 <li>
-                  <div className="text-xs font-semibold leading-6 text-gray-400">Recently visited</div>
+                  <div className="text-xs font-semibold leading-6 text-gray-400">Portfolio companies</div>
                   <ul role="list" className="-mx-2 mt-2 space-y-1">
                     {portfolioCompanies?.slice(0,3)?.map((company) => (
                       <li key={company.id}>
@@ -217,16 +232,28 @@ const SidebarWithHeader = () => {
             </button>
             <div className="flex flex-1 items-center gap-x-4 self-stretch lg:gap-x-6">
               <div className="relative flex flex-1">
-                <span className="block h-full w-full border-0 py-0 pl-2 pr-0 text-black placeholder:text-gray-400 focus:ring-0 text-lg font-bold">
+                <span className="block h-full w-full border-0 py-0 pr-0 text-black placeholder:text-gray-400 focus:ring-0 text-lg font-bold">
                   {portfolioCompany.name || 'Welcome, ' + user.firstName + '!'}
                 </span>
               </div>
               <div className="flex items-center gap-x-4 lg:gap-x-6">
+                {portfolioCompany.id !== 0 ? (
+                  <div className="relative">
+                    <button type="button" className="-m-2.5 p-2.5 text-gray-400 hover:text-gray-500" onClick={onClickRedirectHome}>
+                      <span className="sr-only"></span>
+                      <XMarkIcon aria-hidden="true" className="h-6 w-6" />
+                    </button>
+                  </div>
+                ) : (null)}
                 <div aria-hidden="true" className="hidden lg:block lg:h-6 lg:w-px lg:bg-gray-900/10" />
                 <div className="relative">
                   <button type="button" className="-m-2.5 p-2.5 text-gray-400 hover:text-gray-500" onClick={() => handleRedirect('/notifications')}>
                     <span className="sr-only">View notifications</span>
-                    <BellIcon aria-hidden="true" className="h-6 w-6" />
+                    {currentPath === '/notifications' ? (
+                      <BellIconSolid aria-hidden="true" className="h-6 w-6 text-indigo-600" />
+                    ) : (
+                      <BellIcon aria-hidden="true" className="h-6 w-6" />
+                    )}
                   </button>
                 </div>
               </div>

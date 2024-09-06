@@ -5,7 +5,7 @@ import HorizontalLinkCardsGridList from '@/components/Lists/GridLists/Horizontal
 import { useAtomValue } from 'jotai';
 import { portfolioCompaniesAtom } from '@/jotai/institutionalInvestors/portfolioCompanies';
 import usePortfolioCompany from '@/utils/hooks/institutionalInvestors/usePortfolioCompany';
-import useRedirect from '@/utils/hooks/navigation/useNavigation';
+import useRedirect from '@/utils/hooks/navigation/useRedirect';
 import { PortfolioCompanyProps } from '@/types/institutionalInvestors/portfolioCompany';
 
 const InstitutionalInvestorsPortfolioScreen = () => {
@@ -29,7 +29,7 @@ const InstitutionalInvestorsPortfolioScreen = () => {
 
     const onClick = (company: PortfolioCompanyProps) => {
         handleChangePortfolioCompany(company)
-        handleRedirect('/dashboard')
+        handleRedirect('/documents')
     }
 
     return (
