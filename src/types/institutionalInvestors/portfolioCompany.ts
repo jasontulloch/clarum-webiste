@@ -1,7 +1,15 @@
+export type NewCompanyProps = {
+    name: string,
+    industry: string,
+    transactionType: string,
+    about: string,
+    team: any[],
+    dueDiligenceProviders: any[]
+}
+
 export type PortfolioCompanyProps = {
     id: number,
-    name: string,
     logo: string,
     initial: string,
-    path: string
-}
+    path: string,
+} & NewCompanyProps

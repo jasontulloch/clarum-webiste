@@ -1,5 +1,8 @@
+import React from 'react';
+// State Management
 import { portfolioCompanyAtom } from '@/jotai/institutionalInvestors/portfolioCompanies';
 import { useSetAtom } from 'jotai';
+// External Libraries
 import { useNavigate } from 'react-router-dom';
 
 const useRedirect = () => {

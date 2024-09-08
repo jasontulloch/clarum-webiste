@@ -1,5 +1,5 @@
-// State Management
 import { NewActivityProps } from '@/types/notifications/newActivity'
+// State Management
 import { atom } from 'jotai'
 
 export const newActivityAtom = atom<NewActivityProps[]>([

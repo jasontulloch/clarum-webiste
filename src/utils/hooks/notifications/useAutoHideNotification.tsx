@@ -1,6 +1,6 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 // State Management
-import { useAtom, useSetAtom } from 'jotai';
+import { useAtom, } from 'jotai';
 import {
   isShowNotificationAtom,
   notificationHeaderAtom,

@@ -1,4 +1,5 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
+// State Management
 import { useAtomValue } from 'jotai';
 import { portfolioCompanyAtom } from '@/jotai/institutionalInvestors/portfolioCompanies';
 

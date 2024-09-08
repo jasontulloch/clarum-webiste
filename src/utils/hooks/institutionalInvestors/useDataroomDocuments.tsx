@@ -1,6 +1,8 @@
+import React from 'react';
+import { PortfolioCompanyProps } from '@/types/institutionalInvestors/portfolioCompany';
+// State Management
 import { useAtom } from 'jotai';
 import { portfolioCompanyAtom } from '@/jotai/institutionalInvestors/portfolioCompanies';
-import { PortfolioCompanyProps } from '@/types/institutionalInvestors/portfolioCompany';
 
 const usePortfolioCompany = () => {
   const [portfolioCompany, setPortfolioCompany] = useAtom(portfolioCompanyAtom);
@@ -15,6 +17,11 @@ const usePortfolioCompany = () => {
         name: '',
         initial: '',
         path: '',
+        industry: '',
+        transactionType: '',
+        about: '',
+        team: [],
+        dueDiligenceProviders: []
       });
     }
   };

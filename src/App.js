@@ -7,7 +7,7 @@ import { authenticationGroupAtom } from '@/jotai/authentication';
 import { useAutoHideNotification } from '@/utils/hooks/notifications/useAutoHideNotification';
 import { useRedirectIfInvalid } from '@/utils/hooks/navigation/useRedirectIfInvalid';
 // Internal Components
-import MessageNotification from './components/Overlays/Notifications/MessageNotification';
+import MessageNotification from './components/Overlays/ModalDialogues/MessageNotification';
 // External Libraries
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
@@ -23,7 +23,7 @@ function App() {
     <Router>
       {authenticationGroup === 'Institutional Investor' ? (
         <Routes>
-          {screens?.institutionInvestorScreens?.map((screen) => {
+          {screens?.institutionalInvestorScreens?.map((screen) => {
             return (
               <Route path={screen.path} element={screen.component} />
             )
