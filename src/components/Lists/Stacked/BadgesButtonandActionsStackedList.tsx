@@ -1,4 +1,6 @@
 import { ObservationProps } from '@/types/institutionalInvestors/analytics'
+// Hooks
+import { useDangerNotification } from '@/utils/hooks/notifications/useDangerNotification'
 // Tailwind
 import { classNames } from '@/utils/tailwind/classNames'
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
@@ -15,6 +17,14 @@ interface BadgesButtonAndActionsStackedListProps {
 }
 
 const BadgesButtonAndActionsStackedList = ({ list }: BadgesButtonAndActionsStackedListProps) => {
+
+  // Hooks
+  const { triggerDangerNotification } = useDangerNotification();
+
+  const handleButtonNotSetup = () => {
+    triggerDangerNotification('Component setup required', 'This button / component is not fully setup yet.')
+  }
+
   return (
     <ul role="list" className="divide-y divide-gray-100">
       {list?.map((item) => (
@@ -43,7 +53,8 @@ const BadgesButtonAndActionsStackedList = ({ list }: BadgesButtonAndActionsStack
           </div>
           <div className="flex flex-none items-center gap-x-4">
             <a
-              className="hidden rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:block"
+              className="hidden rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:block cursor-pointer"
+              onClick={handleButtonNotSetup}
             >
               View observation<span className="sr-only">, {item.name}</span>
             </a>
@@ -57,17 +68,17 @@ const BadgesButtonAndActionsStackedList = ({ list }: BadgesButtonAndActionsStack
                 className="absolute right-0 z-10 mt-2 w-32 origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
               >
                 <MenuItem>
-                  <a href="#" className="block px-3 py-1 text-sm leading-6 text-gray-900 data-[focus]:bg-gray-50">
+                  <a onClick={handleButtonNotSetup} className="block px-3 py-1 text-sm leading-6 text-gray-900 data-[focus]:bg-gray-50 cursor-pointer">
                     Edit<span className="sr-only">, {item.name}</span>
                   </a>
                 </MenuItem>
                 <MenuItem>
-                  <a href="#" className="block px-3 py-1 text-sm leading-6 text-gray-900 data-[focus]:bg-gray-50">
+                  <a onClick={handleButtonNotSetup} className="block px-3 py-1 text-sm leading-6 text-gray-900 data-[focus]:bg-gray-50 cursor-pointer">
                     Move<span className="sr-only">, {item.name}</span>
                   </a>
                 </MenuItem>
                 <MenuItem>
-                  <a href="#" className="block px-3 py-1 text-sm leading-6 text-gray-900 data-[focus]:bg-gray-50">
+                  <a onClick={handleButtonNotSetup} className="block px-3 py-1 text-sm leading-6 text-gray-900 data-[focus]:bg-gray-50 cursor-pointer">
                     Delete<span className="sr-only">, {item.name}</span>
                   </a>
                 </MenuItem>
